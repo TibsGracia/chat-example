@@ -1,0 +1,327 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chat</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+
+
+</head>
+<style>
+  body {
+    background: #C5DDEB;
+    font: 14px/20px "Lato", Arial, sans-serif;
+    padding: 40px 0;
+    color: white;
+    margin: 0;
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 750px;
+    background: #444753;
+    border-radius: 5px;
+  }
+
+
+  input {
+    border-radius: 3px;
+    border: none;
+    padding: 14px;
+    color: white;
+    background: #6A6C75;
+    width: 90%;
+    font-size: 14px;
+  }
+
+
+  .chat {
+    width: 490px;
+    float: left;
+    background: #F2F5F8;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    color: #434651;
+  }
+
+  .chat-header {
+    padding: 20px;
+    border-bottom: 2px solid white;
+  }
+
+
+  .chat-about {
+    float: left;
+    padding-left: 10px;
+    margin-top: 6px;
+  }
+
+  .chat-with {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+
+  .chat-history {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid white;
+    overflow-y: scroll;
+    height: 575px;
+  }
+
+  .message {
+    color: white;
+    padding: 18px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    width: 50%;
+    position: relative;
+  }
+
+
+
+  .chat-message {
+    padding: 30px;
+  }
+
+  textarea {
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    font: 14px/22px "Lato", Arial, sans-serif;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+
+  }
+
+#send{
+    float: right;
+  }
+
+  button:hover {
+    color: darken(blue, 7%);
+  }
+
+  .my-message {
+    background: yellowgreen;
+  }
+  .online,
+  .offline,
+  .me {
+    margin-right: 3px;
+    font-size: 10px;
+  }
+
+  .online {
+    color: green;
+  }
+
+  .offline {
+    color: orange;
+  }
+
+  .me {
+    color: blue;
+  }
+
+  .align-left {
+    text-align: left;
+  }
+
+  .align-right {
+    text-align: right;
+  }
+
+  .float-right {
+    float: right;
+  } */
+
+
+/* CSS talk bubble */
+.talk-bubble {
+	margin: 40px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	background-color: lightyellow;
+}
+.border{
+  border: 8px solid #666;
+}
+.round{
+  border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+
+}
+.box {
+  width: 200px;
+  margin: 5px auto;
+  background: #5ae2faf6;
+  padding: 20px;
+  text-align: left;
+  color: black;
+  font-family: arial;
+  position:relative;
+}
+/* Right triangle, right side slightly down*/
+.sb1:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #5ae2faf6;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #5ae2faf6;
+  border-bottom: 10px solid transparent;
+  right: -20px;
+  top: 6px;
+}
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+	text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+#change_username{
+  color: white;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-bottom: 30px;
+  width: 50%;
+  position: relative; 
+
+}
+input{
+  width: 300px;
+  margin: auto;
+}
+
+</style>
+
+<body>
+
+  <div id="change_username">
+    <input id="username" type="text" />
+    <button id="send_username" class="btn btn-primary" type="button">Username</button>
+  </div>
+
+  <div class="container">
+    <div class="chat">
+      <div class="chat-header">
+        <h1>Chat</h1>
+        <!-- <img src="" alt="avatar" /> -->
+        <!-- <div class="chat-about"> -->
+        <div id="name" class="chat-with"></div>
+        <!-- <div class="chat-num-messages">fgfg</div> -->
+        <!-- //</div> -->
+      </div> <!-- end chat-header -->
+      <div class="chat-history">
+        <ul id="messages">
+          <!-- <div class="box sb1">
+          </div> -->
+        </ul>
+      </div>
+      <form class="chat-message">
+        <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+        <i class="fa fa-file-image-o"></i>
+        <button class="btn btn-primary" id="send">Send</button>
+      </form> <!-- end chat-message -->
+    </div> <!-- end chat -->
+  </div> <!-- end container -->
+
+
+</body>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(function(){
+   	//make connection
+	var socket = io.connect('http://localhost:3000')
+
+	//buttons and inputs
+	var message = $("#message")
+	var username = $("#username")
+	var send_message = $("#send_message")
+	var send_username = $("#send_username")
+	var chatroom = $("#chatroom")
+	var feedback = $("#feedback")
+
+	//Emit message
+	send_message.click(function(){
+		socket.emit('new_message', {message : message.val()})
+	})
+
+	//Listen on new_message
+	socket.on("new_message", (data) => {
+		feedback.html('');
+		message.val('');
+		chatroom.append("<p class='message'>" + data.username + ": " + data.message + "</p>")
+	})
+
+	//Emit a username
+	send_username.click(function(){
+		socket.emit('change_username', {username : username.val()})
+	})
+
+	//Emit typing
+	message.bind("keypress", () => {
+		socket.emit('typing')
+	})
+
+	//Listen on typing
+	socket.on('typing', (data) => {
+		feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
+	})
+});
+
+//listen on every connection
+io.on('connection', (socket) => {
+	console.log('New user connected')
+
+	//default username
+	socket.username = "Anonymous"
+
+    //listen on change_username
+    socket.on('change_username', (data) => {
+        socket.username = data.username
+    })
+
+    //listen on new_message
+    socket.on('new_message', (data) => {
+        //broadcast the new message
+        io.sockets.emit('new_message', {message : data.message, username : socket.username});
+    })
+
+    //listen on typing
+    socket.on('typing', (data) => {
+    	socket.broadcast.emit('typing', {username : socket.username})
+    })
+
+</script>
+
+</html>

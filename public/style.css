@@ -1,5 +1,9 @@
 body {
-	background: #C5DDEB;
+	background: linear-gradient(rgba(204,204,204,0.5), rgba(204,204,204,0.5)), url(https://images.vexels.com/media/users/17482/104051/preview2/7e6494a91414f485d820e50e4666d0de-green-nature-bokeh-backdrop.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 	font: 14px/20px "Lato", Arial, sans-serif;
 	padding: 0;
 	color: white;
@@ -9,7 +13,7 @@ body {
 .container {
 	margin: 50px auto;
 	width: 800px;
-	background: #F2F5F8;
+	background: rgb(178, 203, 228);
 	border-radius: 10px;
 	display: none;
 }
@@ -20,16 +24,16 @@ input {
 	padding: 14px;
 	color: black;
 	background: white;
-	width: 70%;
+	width: 100%;
 	font-size: 14px;
-	margin: 20px auto;
+	margin: auto;
 	float: center;
 }
 
 .chat {
 	width: 500px;
 	float: center;
-	background: #F2F5F8;
+	background:  rgb(178, 203, 228);
 	/* border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px; */
 	color: black;
@@ -42,17 +46,6 @@ input {
 
 }
 
-/* .chat-about {
-	float: left;
-	padding-left: 10px;
-	margin-top: 6px;
-}
-
-.chat-with {
-	font-weight: bold;
-	font-size: 16px;
-}
- */
 .chat-history {
 	padding: 30px 30px 20px;
 	border-bottom: 2px solid white;
@@ -94,40 +87,6 @@ button:hover {
 	color: darken(blue, 7%);
 }
 
-.my-message {
-	background: yellowgreen;
-}
-
-.online,
-.offline,
-.me {
-	margin-right: 3px;
-	font-size: 10px;
-}
-
-.online {
-	color: green;
-}
-
-.offline {
-	color: orange;
-}
-
-.me {
-	color: blue;
-}
-
-.align-left {
-	text-align: left;
-}
-
-.align-right {
-	text-align: right;
-}
-
-.float-right {
-	float: right;
-}
 
 */
 /* CSS talk bubble */
@@ -250,7 +209,7 @@ img.avatar {
 	border-radius: 50%;
 }
 
-.login_container {
+.login {
 	padding: 5px;
 	width: 300px;
 	margin: auto;
@@ -329,7 +288,8 @@ span.psw {
 }
 
 #send_username {
-	width: 70%;
+	width: 100%;
+	margin-top: 20px;
 }
 
 #typing {
@@ -350,7 +310,7 @@ span.psw {
 .online_box {
 	width: 250px;
 	float: right;
-	background: #F2F5F8;
+	background: rgb(178, 203, 228);
 	/* border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px; */
 	color: black;

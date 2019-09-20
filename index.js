@@ -10,7 +10,6 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  socket.broadcast.emit('hi');
   socket.username = "Anonymous";
 
   socket.on('username', function (msg) {
@@ -24,13 +23,13 @@ io.on('connection', function (socket) {
       io.sockets.emit('username', nicknames);
     }
   })
-  socket.on('disconnect', function(msg){
-    console.log('user disconnected:' + socket.username )
-    if(!socket.username) return;
-    nicknames[socket.username].online = false ;
+  socket.on('disconnect', function (msg) {
+    console.log('user disconnected:' + socket.username)
+    if (!socket.username) return;
+    nicknames[socket.username].online = false;
     console.log(nicknames)
     io.sockets.emit('username', nicknames);
-});
+  });
 
   socket.on('chat message', function (msg) {
     console.log('message')
@@ -44,33 +43,8 @@ io.on('connection', function (socket) {
     io.sockets.emit('online', { username: socket.username })
   })
 
-
-  // socket.on('disconnect', function () {
-  //   console.log(socket.username)
-  //   io.sockets.emit('online', { username: socket.username })
-  // })
-
-
-  // socket.on('is_online', function () {
-  //   io.emit('is_online', socket.username );
-  // });
 });
 
-// io.sockets.on('connection', function(socket) {
-//   socket.on('username', function(username) {
-//       socket.username = username;
-//       io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
-//   });
-
-//   socket.on('disconnect', function(username) {
-//       io.emit('is_online', '🔴 <i>' + socket.username + ' left the chat..</i>');
-//   })
-
-//   socket.on('chat_message', function(message) {
-//       io.emit('chat_message', '<strong>' + socket.username + '</strong>: ' + message);
-//   });
-
-// });
 app.use(express.static('public'));
 
 http.listen(8000, function () {

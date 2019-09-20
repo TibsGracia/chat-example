@@ -1,15 +1,19 @@
-
+$("#username").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#send_username").on('click');
+    }
+});
 
 $("#send_username").on('click', function (e) {
     e.preventDefault();
-    var online = [];
     var socket = io.connect('http://localhost:8000')
     var message = $("#message-to-send");
-    var usernameBtn = $("#send_username");
     var username = $("#username");
     $('.login_form').hide();
     $('.container').show();
-    $('#name').text(username.val())
+    $('#name').empty();
+    $('#name').append("<h5><img src='https://icon-library.net/images/username-and-password-icon/username-and-password-icon-15.jpg' alt='avatar' class='user'/>" + username.val() + "</h5>");
+    // $('#name').text(username.val())
     socket.emit('username', { username: username.val() })
     socket.emit('online');
 
@@ -27,10 +31,10 @@ $("#send_username").on('click', function (e) {
     socket.on('chat message', function (msg) {
         console.log(username.val());
         if (msg.username == username.val()) {
-            $('#messages').append('<div class= "box sb1 round">' + msg.message + '</div><br>');
+            $('#messages').append('<div class= "box sb1 round"><b>me:</b> ' + msg.message +'<p class="time">'+moment().format('MMM Do YYYY, h:mm:ss a')+ '</p></div><br>');
             // window.scrollTo(0, document.body.scrollHeight);
         } else {
-            $('#messages').append('<div class= "speech sb">' + msg.username + ": " + msg.message + '</div><br>');
+            $('#messages').append('<div class= "speech sb"><b>' + msg.username + ":</b> " + msg.message + '<p class="time">'+moment().format('MMM Do YYYY, h:mm:ss a')+ '</p></div><br>');
             // $('#messages').append('<br><p>' + msg.username + ' join the group chat'+'</p>');
         }
     });
@@ -55,11 +59,11 @@ $("#send_username").on('click', function (e) {
 
     socket.on('username', function (data) {
         $('.online_box').empty();
+        $('.online_box').append("<h3><img src='https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png' alt='avatar' class='users'/>USERS</h3>");
         for (var user in data) {
             var isOnline = data[user].online
             if (isOnline) {
-                $('.online_box').append('<div class= "online" id=' + user + '>' + user + " is online" + '</div>');
-                current.push(user)
+                $('.online_box').append('<div class= "online"' + user + " is online" + '</div>');
             }
             else {
                 $('.online_box').append('<div class= "not_online">' + user + " is offline" + '</div>');

@@ -29,6 +29,7 @@ io.on('connection', function (socket) {
     nicknames[socket.username].online = false;
     console.log(nicknames)
     io.sockets.emit('username', nicknames);
+    // io.sockets.emit('online', nicknames);
   });
 
   socket.on('chat message', function (msg) {

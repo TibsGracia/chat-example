@@ -1,8 +1,9 @@
-$("#username").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#send_username").on('click');
-    }
-});
+// $("#username").keyup(function(event) {
+//     if (event.keyCode === 13) {
+//         $("#send_username").on('click');
+//     }
+// });
+
 
 $("#send_username").on('click', function (e) {
     e.preventDefault();
@@ -63,10 +64,11 @@ $("#send_username").on('click', function (e) {
         for (var user in data) {
             var isOnline = data[user].online
             if (isOnline) {
-                $('.online_box').append('<div class= "online"' + user + " is online" + '</div>');
+                $('.online_box').append('<div class= "online">' + user + " is online" + '</div>');
             }
             else {
                 $('.online_box').append('<div class= "not_online">' + user + " is offline" + '</div>');
+                // $('#messages').append('<div class= "join_chat">' + msg.username + " left the group chat" + '</div>');
             }
         }
 

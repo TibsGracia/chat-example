@@ -23,14 +23,22 @@ io.on('connection', function (socket) {
       io.sockets.emit('username', nicknames);
     }
   })
+
+  socket.on('online', function (msg) {
+    io.sockets.emit('online', { username: socket.username, message: msg.online })
+  })
+
   socket.on('disconnect', function (msg) {
+    // socket.on('online', function (msg) {
+    // io.sockets.emit('online', { username: socket.username, message: msg.notOnline })
+    // console.log(msg.notOnline)
+    // });
     console.log('user disconnected:' + socket.username)
     if (!socket.username) return;
     nicknames[socket.username].online = false;
     console.log(nicknames)
     io.sockets.emit('username', nicknames);
-    // io.sockets.emit('online', nicknames);
-  });
+  })
 
   socket.on('chat message', function (msg) {
     console.log('message')
@@ -38,10 +46,6 @@ io.on('connection', function (socket) {
   });
   socket.on('typing', function () {
     socket.broadcast.emit('typing', { username: socket.username })
-  })
-
-  socket.on('online', function () {
-    io.sockets.emit('online', { username: socket.username })
   })
 
 });

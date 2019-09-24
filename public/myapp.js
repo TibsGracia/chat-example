@@ -16,7 +16,7 @@ $("#send_username").on('click', function (e) {
     $('#name').append("<h5><img src='https://icon-library.net/images/username-and-password-icon/username-and-password-icon-15.jpg' alt='avatar' class='user'/>" + username.val() + "</h5>");
     // $('#name').text(username.val())
     socket.emit('username', { username: username.val() })
-    socket.emit('online');
+    socket.emit('online', { online: " join the group chat", notOnline: " left the group chat" });
 
     $('.chat-message').submit(function () {
         socket.emit('chat message', {
@@ -25,26 +25,17 @@ $("#send_username").on('click', function (e) {
         message.val('');
         return false;
     });
-    // socket.on('is_online', function () {
-    //   io.emit('is_online', socket.username );
-    // });
 
     socket.on('chat message', function (msg) {
         console.log(username.val());
         if (msg.username == username.val()) {
-            $('#messages').append('<div class= "box sb1 round"><b>me:</b> ' + msg.message +'<p class="time">'+moment().format('MMM Do YYYY, h:mm:ss a')+ '</p></div><br>');
+            $('#messages').append('<div class= "box sb1 round"><b>me:</b> ' + msg.message + '<p class="time">' + moment().format('MMM Do YYYY, h:mm:ss a') + '</p></div><br>');
             // window.scrollTo(0, document.body.scrollHeight);
         } else {
-            $('#messages').append('<div class= "speech sb"><b>' + msg.username + ":</b> " + msg.message + '<p class="time">'+moment().format('MMM Do YYYY, h:mm:ss a')+ '</p></div><br>');
+            $('#messages').append('<div class= "speech sb"><b>' + msg.username + ":</b> " + msg.message + '<p class="time">' + moment().format('MMM Do YYYY, h:mm:ss a') + '</p></div><br>');
             // $('#messages').append('<br><p>' + msg.username + ' join the group chat'+'</p>');
         }
     });
-
-    socket.on('online', function (msg) {
-        if (msg.username != username.val()) {
-            $('#messages').append('<div class= "join_chat">' + msg.username + " join the group chat" + '</div>');
-        }
-    })
 
     message.bind("keypress", function () {
         socket.emit('typing');
@@ -57,6 +48,7 @@ $("#send_username").on('click', function (e) {
             $("#typing").html('');
         }, 3000);
     })
+    // socket.emit('not_online');
 
     socket.on('username', function (data) {
         $('.online_box').empty();
@@ -68,16 +60,20 @@ $("#send_username").on('click', function (e) {
             }
             else {
                 $('.online_box').append('<div class= "not_online">' + user + " is offline" + '</div>');
-                // $('#messages').append('<div class= "join_chat">' + msg.username + " left the group chat" + '</div>');
             }
         }
-
     });
-
-    // socket.on('disconnect', function (msg) {
-    //     console.log(err);
-    //     $('#messages').append('<div class= "join_chat">' + msg.username + ' left the group chat' + '</div>');
+    socket.on('online', function (msg) {
+        if (msg.username != username.val()) {
+            $('#messages').append('<div class= "join_chat">' + msg.username + " " + msg.message + '</div>');
+        }
+    })
+    // socket.on('not_online', function (msg) {
+    //     if (msg.username != username.val()) {
+    //         $('#messages').append('<div class= "join_chat">' + msg.username + " left the group chat" + '</div>');
+    //     }
     // })
+
 
 
 });

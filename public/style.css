@@ -1,5 +1,5 @@
 body {
-	background: linear-gradient(rgba(204,204,204,0.5), rgba(204,204,204,0.5)), url(https://images.vexels.com/media/users/17482/104051/preview2/7e6494a91414f485d820e50e4666d0de-green-nature-bokeh-backdrop.png) no-repeat center center fixed; 
+	background: linear-gradient(rgba(204,204,204,0.5), rgba(204,204,204,0.5)), url(/images/background.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -393,3 +393,6 @@ h5{
 	position: relative;
 }
 
+#logout{
+	float:right;
+}

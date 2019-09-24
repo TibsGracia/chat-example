@@ -25,14 +25,15 @@ io.on('connection', function (socket) {
   })
 
   socket.on('online', function (msg) {
-    io.sockets.emit('online', { username: socket.username, message: msg.online })
+    io.sockets.emit('online', { username: socket.username, message: " join the group chat" })
   })
 
   socket.on('disconnect', function (msg) {
     // socket.on('online', function (msg) {
-    // io.sockets.emit('online', { username: socket.username, message: msg.notOnline })
+    io.sockets.emit('online', { username: socket.username, message: " left the group chat" })
     // console.log(msg.notOnline)
     // });
+    console.log()
     console.log('user disconnected:' + socket.username)
     if (!socket.username) return;
     nicknames[socket.username].online = false;
@@ -53,5 +54,5 @@ io.on('connection', function (socket) {
 app.use(express.static('public'));
 
 http.listen(8000, function () {
-  console.log('listening on *:' + 3000);
+  console.log('listening on *:' + 8000);
 });

@@ -13,10 +13,10 @@ $("#send_username").on('click', function (e) {
     $('.login_form').hide();
     $('.container').show();
     $('#name').empty();
-    $('#name').append("<h5><img src='https://icon-library.net/images/username-and-password-icon/username-and-password-icon-15.jpg' alt='avatar' class='user'/>" + username.val() + "</h5>");
+    $('#name').append("<h5><img src='/images/user_chat.jpg' alt='avatar' class='user'/>" + username.val() + "</h5>");
     // $('#name').text(username.val())
     socket.emit('username', { username: username.val() })
-    socket.emit('online', { online: " join the group chat", notOnline: " left the group chat" });
+    socket.emit('online');
 
     $('.chat-message').submit(function () {
         socket.emit('chat message', {
@@ -52,7 +52,7 @@ $("#send_username").on('click', function (e) {
 
     socket.on('username', function (data) {
         $('.online_box').empty();
-        $('.online_box').append("<h3><img src='https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png' alt='avatar' class='users'/>USERS</h3>");
+        $('.online_box').append("<h3><img src='/images/users.png' alt='avatar' class='users'/>USERS</h3>");
         for (var user in data) {
             var isOnline = data[user].online
             if (isOnline) {
